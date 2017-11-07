@@ -1,0 +1,61 @@
+package edu.jhu.cvrg.carescape.messages;
+
+/*
+Copyright 2016-2017 Johns Hopkins University Institute for Computational Medicine
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+/**
+* @author Christian Jurado, Stephen Granite
+* 
+*/
+
+import edu.jhu.cvrg.sapphire.data.common.Header;
+import edu.jhu.cvrg.sapphire.xmlparser.BinEndXMLParser;
+
+public class BinEndMessage extends InMessage {
+
+	private BinEndXMLParser binHeaderXMLParser;
+	private Header binEndHeader;
+
+	public BinEndMessage() {
+
+		super();
+
+	}
+
+	@Override
+	public void setMessageXML(String messageXML) {
+		setBinEndXMLParser(new BinEndXMLParser(messageXML));
+		setBinEndHeader(getBinEndXMLParser().getBinEnd().getHeader());
+		super.setMessageXML(messageXML);
+	}
+
+	public BinEndXMLParser getBinEndXMLParser() {
+		return binHeaderXMLParser;
+	}
+
+	public void setBinEndXMLParser(BinEndXMLParser binHeaderXMLParser) {
+		this.binHeaderXMLParser = binHeaderXMLParser;
+	}
+
+	public Header getBinEndHeader() {
+		return binEndHeader;
+	}
+
+	public void setBinEndHeader(Header binEndHeader) {
+		this.binEndHeader = binEndHeader;
+	}
+
+}
